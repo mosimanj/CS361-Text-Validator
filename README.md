@@ -1,7 +1,7 @@
 # CS361-Text-Validator
 ## How to Request Data
 ### Request Parameters
-* **Text**:String of input text
+* **Text**: String of input text
 * **Min_length** (optional): Maximum length of valid input text
 * **Min_length** (optional): Minimum length of valid input text
 
