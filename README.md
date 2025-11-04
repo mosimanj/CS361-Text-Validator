@@ -5,6 +5,15 @@
 * **Min_length** (optional): Maximum length of valid input text
 * **Min_length** (optional): Minimum length of valid input text
 
+### Request Format
+```
+{
+    "text": "example text",
+    "min_length": 1,
+    "max_length": 100
+}
+```
+
 ### Example Call
 ```
 context = zmq.Context()
@@ -30,6 +39,25 @@ context.term()
 ### Response Object
 * **valid** (boolean): True if all validation passed, False otherwise
 * **error** (string or null): Description of validation error if invalid, null if valid
+
+### Response Format
+#### Valid
+```
+{
+    "valid": true,
+    "error": null
+}
+```
+
+#### Invalid
+```
+Response Format (invalid):
+{
+    "valid": false,
+    "error": "Text cannot be empty"
+}
+```
+
 ### Example Call
 ```
 # Create context and socket
