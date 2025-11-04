@@ -51,7 +51,6 @@ context.term()
 
 #### Invalid
 ```
-Response Format (invalid):
 {
     "valid": false,
     "error": "Text cannot be empty"
