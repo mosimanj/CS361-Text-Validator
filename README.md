@@ -1,9 +1,9 @@
 # CS361-Text-Validator
 ## How to Request Data
 ### Request Parameters
-**Text**:String of input text
-**Min_length** (optional): Maximum length of valid input text
-**Min_length** (optional): Minimum length of valid input text
+* **Text**:String of input text
+* **Min_length** (optional): Maximum length of valid input text
+* **Min_length** (optional): Minimum length of valid input text
 
 ### Example Call
 ```
@@ -28,8 +28,8 @@ context.term()
 ```
 ## How to Receive Data
 ### Response Object
-*valid* (boolean): True if all validation passed, False otherwise
-*error* (string or null): Description of validation error if invalid, null if valid
+* **valid** (boolean): True if all validation passed, False otherwise
+* **error** (string or null): Description of validation error if invalid, null if valid
 ### Example Call
 ```
 # Create context and socket
