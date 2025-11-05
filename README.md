@@ -94,7 +94,7 @@ else:
 # Display error to
 user display_error(response["error"])
 ```
-## UML Diagram (WIP)
-<img width="1026" height="463" alt="image" src="https://github.com/user-attachments/assets/d50e9e67-b66e-4e20-9f4c-ab7bbb17ac3a" />
+## UML Diagram
+<img width="1039" height="415" alt="image" src="https://github.com/user-attachments/assets/cc2f89f6-31b1-4871-85a9-a8ef5fafa584" />
 
 [Edit diagram here](https://lucid.app/lucidchart/8e2141c2-6130-446f-a50f-71bae0807448/edit?viewport_loc=-193%2C10%2C1461%2C707%2C0_0&invitationId=inv_6e4d4009-3c7a-4cc6-ae24-cb33d79b596c)
