@@ -95,6 +95,6 @@ else:
 user display_error(response["error"])
 ```
 ## UML Diagram (WIP)
-<img width="1016" height="471" alt="image" src="https://github.com/user-attachments/assets/a0a7e85d-0290-444b-bbc8-5e0e9d4cb1f0" />
+<img width="1026" height="463" alt="image" src="https://github.com/user-attachments/assets/d50e9e67-b66e-4e20-9f4c-ab7bbb17ac3a" />
 
 [Edit diagram here](https://lucid.app/lucidchart/8e2141c2-6130-446f-a50f-71bae0807448/edit?viewport_loc=-193%2C10%2C1461%2C707%2C0_0&invitationId=inv_6e4d4009-3c7a-4cc6-ae24-cb33d79b596c)
