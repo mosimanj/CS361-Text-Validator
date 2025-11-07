@@ -25,15 +25,6 @@ socket.connect("tcp://localhost:5556")
 request = {"text": "Do homework", "min_length": 1, "max_length": 100}
 request_json = json.dumps(request)
 socket.send_string(request_json)
-response_json = socket.recv_string()
-response = json.loads(response_json)
-if response["valid"]:
-    print("Text is valid!")
-else:
-    print(f"Validation error: {response['error']}")
-socket.close()
-context.term()
-
 ```
 ## How to Receive Data
 ### Response Object
@@ -59,40 +50,17 @@ context.term()
 
 ### Example Call
 ```
-# Create context and socket
-context = zmq.Context()
-socket = context.socket(zmq.REP)
-# Bind to port 5556
-socket.bind("tcp://*:5556")
-while True:
-# Receive request
-message = socket.recv_string()
-request = json.loads(message)
-# Extract parameters
-text = request.get("text", "")
-min_length = request.get("min_length", 0)
-max_length = request.get("max_length", None)
-# Validate text
-is_valid, error_message = validate_text(text, min_length, max_length)
-# Create response
-response = {
-"valid": is_valid,
-"error": error_message
-}
-# Send response
-response_json = json.dumps(response)
-socket.send_string(response_json)
-CLIENT/OTHER PROGRAMS
-# Receive response response_
-json = socket.recv_string()
+import zmq
+import json
+
+response_json = socket.recv_string()
 response = json.loads(response_json)
-# Use validation result
 if response["valid"]:
-# Proceed with valid text
-process_text(text)
+    print("Text is valid!")
 else:
-# Display error to
-user display_error(response["error"])
+    print(f"Validation error: {response['error']}")
+socket.close()
+context.term()
 ```
 ## UML Diagram
 <img width="800" height="321" alt="image" src="https://github.com/user-attachments/assets/d2e185ea-cbac-49dd-9b4f-256800099287" />
