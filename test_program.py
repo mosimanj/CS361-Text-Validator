@@ -1,6 +1,14 @@
 import zmq
 import json
 
+
+def handle_response(response):
+    if response["valid"]:
+        print("Text is valid!")
+    else:
+        print(f"Validation error: {response['error']}")
+
+
 context = zmq.Context()
 socket = context.socket(zmq.REQ)
 socket.connect("tcp://localhost:5556")
@@ -9,9 +17,6 @@ request_json = json.dumps(request)
 socket.send_string(request_json)
 response_json = socket.recv_string()
 response = json.loads(response_json)
-if response["valid"]:
-    print("Text is valid!")
-else:
-    print(f"Validation error: {response['error']}")
+handle_response(response)
 socket.close()
 context.term()
