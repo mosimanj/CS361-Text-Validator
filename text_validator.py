@@ -7,28 +7,22 @@ def validate_text(text, min_length=0, max_length=None):
     """
     Validate text against specified rules.
     """
-    # check if text is None or empty string
     if text is None or text == "":
         if min_length > 0:
             return False, "Text cannot be empty"
 
-    # check if text is only whitespace
     if text and text.strip() == "":
         if min_length > 0:
             return False, "Text cannot be empty or only whitespace"
 
-    # get actual text length
     text_length = len(text) if text else 0
 
-    # check minimum length
     if min_length > 0 and text_length < min_length:
         return False, f"Text must be at least {min_length} character(s) long"
 
-    # check maximum length
     if max_length is not None and text_length > max_length:
         return False, f"Text cannot exceed {max_length} character(s)"
 
-    # all validation passed
     return True, None
 
 
@@ -42,8 +36,6 @@ def main():
     socket = context.socket(zmq.REP)
 
     # bind to port 5556
-    # TODO: we need to agree as a team which of our services use which ports
-    # TODO: so we don't step on each other's toes
     port = 5556
     socket.bind(f"tcp://*:{port}")
 
@@ -68,7 +60,6 @@ def main():
             print(f"[Request #{request_count}] Received: {message}")
 
             try:
-                # parse JSON request
                 request = json.loads(message)
 
                 # get parameters from request
@@ -76,7 +67,6 @@ def main():
                 min_length = request.get("min_length", 0)
                 max_length = request.get("max_length", None)
 
-                # validate the text
                 is_valid, error_message = validate_text(text, min_length, max_length)
 
                 # create response
