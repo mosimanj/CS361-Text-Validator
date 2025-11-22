@@ -3,24 +3,48 @@ import zmq
 import json
 
 
+def _validate_empty_text(text, min_length):
+    """Check if text is empty or whitespace when min_length requires it."""
+    if min_length > 0:
+        if text is None or text == "":
+            return False, "Text cannot be empty"
+        if text.strip() == "":
+            return False, "Text cannot be empty or only whitespace"
+    return True, None
+
+
+def _validate_min_length(text, min_length):
+    """Check if text meets minimum length requirement."""
+    if min_length > 0 and len(text) < min_length:
+        return False, f"Text must be at least {min_length} character(s) long"
+    return True, None
+
+
+def _validate_max_length(text, max_length):
+    """Check if text exceeds maximum length."""
+    if max_length is not None and len(text) > max_length:
+        return False, f"Text cannot exceed {max_length} character(s)"
+    return True, None
+
+
 def validate_text(text, min_length=0, max_length=None):
     """
     Validate text against specified rules.
     """
-    if min_length > 0:
-        if text is None or text == "" or (text and text.strip() == ""):
-            if text is None or text == "":
-                return False, "Text cannot be empty"
-            else:
-                return False, "Text cannot be empty or only whitespace"
-              
-    text_length = len(text) if text else 0
+    is_valid, error = _validate_empty_text(text, min_length)
+    if not is_valid:
+        return False, error
 
-    if min_length > 0 and text_length < min_length:
-        return False, f"Text must be at least {min_length} character(s) long"
+    if text is None:
+        text = ""
 
-    if max_length is not None and text_length > max_length:
-        return False, f"Text cannot exceed {max_length} character(s)"
+    is_valid, error = _validate_min_length(text, min_length)
+    if not is_valid:
+        return False, error
+
+    is_valid, error = _validate_max_length(text, max_length)
+    if not is_valid:
+        return False, error
 
     return True, None
 
