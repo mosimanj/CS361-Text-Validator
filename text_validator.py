@@ -7,28 +7,21 @@ def validate_text(text, min_length=0, max_length=None):
     """
     Validate text against specified rules.
     """
-    # check if text is None or empty string
-    if text is None or text == "":
-        if min_length > 0:
-            return False, "Text cannot be empty"
+    if min_length > 0:
+        if text is None or text == "" or (text and text.strip() == ""):
+            if text is None or text == "":
+                return False, "Text cannot be empty"
+            else:
+                return False, "Text cannot be empty or only whitespace"
 
-    # check if text is only whitespace
-    if text and text.strip() == "":
-        if min_length > 0:
-            return False, "Text cannot be empty or only whitespace"
-
-    # get actual text length
     text_length = len(text) if text else 0
 
-    # check minimum length
     if min_length > 0 and text_length < min_length:
         return False, f"Text must be at least {min_length} character(s) long"
 
-    # check maximum length
     if max_length is not None and text_length > max_length:
         return False, f"Text cannot exceed {max_length} character(s)"
 
-    # all validation passed
     return True, None
 
 
