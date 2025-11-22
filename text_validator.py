@@ -13,7 +13,7 @@ def validate_text(text, min_length=0, max_length=None):
                 return False, "Text cannot be empty"
             else:
                 return False, "Text cannot be empty or only whitespace"
-
+              
     text_length = len(text) if text else 0
 
     if min_length > 0 and text_length < min_length:
@@ -35,8 +35,6 @@ def main():
     socket = context.socket(zmq.REP)
 
     # bind to port 5556
-    # TODO: we need to agree as a team which of our services use which ports
-    # TODO: so we don't step on each other's toes
     port = 5556
     socket.bind(f"tcp://*:{port}")
 
@@ -61,7 +59,6 @@ def main():
             print(f"[Request #{request_count}] Received: {message}")
 
             try:
-                # parse JSON request
                 request = json.loads(message)
 
                 # get parameters from request
@@ -69,7 +66,6 @@ def main():
                 min_length = request.get("min_length", 0)
                 max_length = request.get("max_length", None)
 
-                # validate the text
                 is_valid, error_message = validate_text(text, min_length, max_length)
 
                 # create response
